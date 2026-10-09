@@ -110,6 +110,23 @@ journalctl --user -u hypr-kdeconnect-portal.service -f
 - Connects but cursor won't cross → the server's layout screen name doesn't match
   the client's computer name.
 
+## Known issues
+
+**macOS "ghost cursor" (server side).** When the server is a Mac and you cross
+to the Hyprland client, the Mac often doesn't fully hide its own pointer — it
+parks it mid-screen and leaves it visible. This is a long-standing
+Synergy/Deskflow macOS limitation, unrelated to this bridge (the client side is
+fine). Mitigations, all on the Mac:
+
+- Grant the server app **Accessibility**, **Input Monitoring** and **Screen
+  Recording** in *System Settings → Privacy & Security* — missing permissions
+  can break cursor hiding.
+- Run **Deskflow** (latest) on the Mac instead of an old Synergy 1.x — same
+  project, better-maintained cursor handling, and both ends match.
+- As a reliable fallback, use a macOS cursor hider such as **Cursorcerer** (hide
+  the pointer after a few seconds idle or via hotkey); while you're on the
+  client the Mac pointer is idle, so it hides itself.
+
 ## Status / upstreaming
 
 Native RemoteDesktop support is being added to `xdg-desktop-portal-hyprland`
